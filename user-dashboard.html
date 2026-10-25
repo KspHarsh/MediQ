@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Patient Dashboard — MediQ</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body id="patient-dashboard-page">
+
+  <!-- Navigation Header -->
+  <header class="navbar">
+    <div class="container">
+      <a href="user-dashboard.html" class="nav-brand">
+        <img src="images/logo.png" alt="MediQ Official Logo">
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="user-dashboard.html" class="active">Dashboard</a></li>
+        <li><a href="book-appointment.html">Book Appointment</a></li>
+        <li><a href="my-appointments.html">My Appointments</a></li>
+        <li><a href="about.html">About & Services</a></li>
+      </ul>
+      <div class="nav-actions">
+        <span class="user-badge">
+          <span class="role-tag">Patient</span>
+          <span id="dashboard-user-name">Patient</span>
+        </span>
+        <button class="btn btn-secondary btn-sm btn-action-logout">Log Out</button>
+        <button class="nav-toggle" aria-label="Toggle Navigation">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <div class="container">
+      <!-- Welcome Header -->
+      <div class="page-header">
+        <div>
+          <h1 class="page-title">Patient Portal Dashboard</h1>
+          <p class="page-subtitle">Track your appointment requests, view upcoming consultations, and access tokens</p>
+        </div>
+        <div class="page-actions">
+          <a href="book-appointment.html" class="btn btn-primary btn-lg">
+            <span>+</span> Book New Appointment
+          </a>
+        </div>
+      </div>
+
+      <!-- Stats Grid -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon stat-icon-blue">📋</div>
+          <div class="stat-content">
+            <div class="stat-value" id="stat-total-apts">0</div>
+            <div class="stat-label">Total Appointments</div>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon stat-icon-amber">⏳</div>
+          <div class="stat-content">
+            <div class="stat-value" id="stat-pending-apts">0</div>
+            <div class="stat-label">Pending Review</div>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon stat-icon-green">✅</div>
+          <div class="stat-content">
+            <div class="stat-value" id="stat-approved-apts">0</div>
+            <div class="stat-label">Approved &amp; Token Ready</div>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon stat-icon-red">❌</div>
+          <div class="stat-content">
+            <div class="stat-value" id="stat-rejected-apts">0</div>
+            <div class="stat-label">Rejected / Expired</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Action Cards -->
+      <div class="quick-actions-grid">
+        <a href="book-appointment.html" class="quick-action-card">
+          <div>
+            <div class="quick-action-header">
+              <div class="quick-action-icon">🗓️</div>
+              <div class="quick-action-title">Book an Appointment</div>
+            </div>
+            <p class="quick-action-desc">
+              Browse available doctors across hospital departments and reserve an exact 10-minute slot.
+            </p>
+          </div>
+          <span class="quick-action-link">Start Booking &rarr;</span>
+        </a>
+
+        <a href="my-appointments.html" class="quick-action-card">
+          <div>
+            <div class="quick-action-header">
+              <div class="quick-action-icon">📁</div>
+              <div class="quick-action-title">View All My Appointments</div>
+            </div>
+            <p class="quick-action-desc">
+              Inspect your entire history of pending, approved, and past appointment requests.
+            </p>
+          </div>
+          <span class="quick-action-link">View Records &rarr;</span>
+        </a>
+      </div>
+
+      <!-- Recent Appointments Card -->
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title">Recent Appointment Activity</h2>
+            <p class="card-subtitle">Your most recently scheduled consultation requests</p>
+          </div>
+          <a href="my-appointments.html" class="btn btn-secondary btn-sm">View All</a>
+        </div>
+
+        <div id="recent-appointments-container">
+          <!-- Dynamically populated by js/user-dashboard.js -->
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <div>&copy; 2026 MediQ Hospital Systems. Demonstration Prototype.</div>
+        <div>
+          <a href="my-appointments.html">My Appointments</a> &bull;
+          <a href="book-appointment.html">Book Appointment</a> &bull;
+          <a href="about.html">About MediQ</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/storage.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/user-dashboard.js"></script>
+</body>
+</html>

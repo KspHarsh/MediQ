@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Appointment Details — MediQ</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+
+  <!-- Navigation Header -->
+  <header class="navbar">
+    <div class="container">
+      <a href="user-dashboard.html" class="nav-brand" id="details-brand-link">
+        <img src="images/logo.png" alt="MediQ Official Logo">
+      </a>
+      <ul class="nav-links" id="details-nav-links">
+        <li><a href="user-dashboard.html">Dashboard</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="btn btn-secondary btn-sm btn-action-logout">Log Out</button>
+        <button class="nav-toggle" aria-label="Toggle Navigation">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <div class="container" style="max-width: 900px;">
+      <div id="new-apt-alert" class="alert alert-success" style="display: none;">
+        <div>
+          <strong>Request Submitted Successfully!</strong>
+          Your appointment request has been submitted and is currently pending administrator review. Once approved, you can print your token.
+        </div>
+      </div>
+
+      <div class="page-header">
+        <div>
+          <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.35rem;">
+            <h1 class="page-title" id="det-apt-id">Appointment</h1>
+            <span id="det-status-badge"></span>
+          </div>
+          <p class="page-subtitle" id="det-created-time">Submitted: -</p>
+        </div>
+        <div class="page-actions" id="det-header-actions">
+          <!-- Back button dynamically populated based on role -->
+        </div>
+      </div>
+
+      <div class="details-grid">
+        <!-- Main Info -->
+        <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+          <!-- Patient Details Card -->
+          <div class="card">
+            <h3 class="card-title" style="margin-bottom: 1rem; border-bottom: 1px solid var(--color-border); padding-bottom: 0.5rem;">
+              Patient Information
+            </h3>
+            <div class="details-list">
+              <div class="details-row">
+                <span class="details-label">Full Legal Name:</span>
+                <span class="details-val" id="det-patient-name" style="font-weight: 700;">-</span>
+              </div>
+              <div class="details-row">
+                <span class="details-label">Age &amp; Gender:</span>
+                <span class="details-val" id="det-patient-meta">-</span>
+              </div>
+              <div class="details-row">
+                <span class="details-label">Contact Phone:</span>
+                <span class="details-val" id="det-patient-contact">-</span>
+              </div>
+              <div class="details-row">
+                <span class="details-label">Reason for Visit:</span>
+                <span class="details-val" id="det-patient-reason">-</span>
+              </div>
+              <div class="details-row">
+                <span class="details-label">Additional Notes:</span>
+                <span class="details-val" id="det-patient-notes">-</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Schedule & Doctor Info Card -->
+          <div class="card">
+            <h3 class="card-title" style="margin-bottom: 1rem; border-bottom: 1px solid var(--color-border); padding-bottom: 0.5rem;">
+              Clinical Consultation &amp; Time Slot
+            </h3>
+            <div id="det-doctor-photo" style="display: none; text-align: center; margin-bottom: 1rem;">
+              <!-- Doctor profile image populated by script -->
+            </div>
+            <div class="details-list">
+              <div class="details-row">
+                <span class="details-label">Assigned Doctor:</span>
+                <span class="details-val" id="det-doctor-name" style="font-weight: 700;">-</span>
+              </div>
+              <div class="details-row">
+                <span class="details-label">Specialty:</span>
+                <span class="details-val" id="det-doctor-specialty" style="color: var(--color-primary); font-weight: 600;">-</span>
+              </div>
+              <div class="details-row">
+                <span class="details-label">Qualifications:</span>
+                <span class="details-val" id="det-doctor-quals">-</span>
+              </div>
+              <div class="details-row">
+                <span class="details-label">Scheduled Date:</span>
+                <span class="details-val" id="det-slot-date" style="font-weight: 700;">-</span>
+              </div>
+              <div class="details-row">
+                <span class="details-label">Time Window:</span>
+                <span class="details-val" id="det-slot-time" style="color: #0E7422; font-weight: 700;">-</span>
+              </div>
+              <div class="details-row">
+                <span class="details-label">Duration:</span>
+                <span class="details-val">Exact 10 Minutes</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Side: Status Decision & Action Box -->
+        <div>
+          <div class="card" style="border-top: 4px solid var(--color-primary);">
+            <h3 style="font-size: 1.15rem; font-weight: 700; margin-bottom: 1rem;">Administrative Status</h3>
+            <div style="margin-bottom: 1.25rem;">
+              <div style="font-size: 0.8rem; color: var(--color-text-secondary); margin-bottom: 0.25rem;">Current Invariant State:</div>
+              <div id="det-status-display" style="margin-bottom: 0.5rem;">-</div>
+              <p id="det-status-explanation" style="font-size: 0.85rem; color: var(--color-text-secondary); line-height: 1.4;">
+                <!-- dynamic text -->
+              </p>
+            </div>
+
+            <div id="det-decision-box" style="margin-bottom: 1.5rem; display: none;">
+              <div style="font-size: 0.8rem; color: var(--color-text-secondary);">Decision Timestamp:</div>
+              <div id="det-decision-time" style="font-size: 0.85rem; font-weight: 600;">-</div>
+              <div id="det-rejection-reason-box" style="margin-top: 0.5rem; display: none;">
+                <div style="font-size: 0.8rem; color: var(--color-status-rejected); font-weight: 600;">Rejection Reason:</div>
+                <div id="det-rejection-reason" style="font-size: 0.85rem;">-</div>
+              </div>
+            </div>
+
+            <!-- Dynamic Actions -->
+            <div id="det-actions-container" style="display: flex; flex-direction: column; gap: 0.75rem;">
+              <!-- Populated by script -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <div>&copy; 2026 MediQ Hospital Systems. All rights reserved.</div>
+        <div><a href="user-dashboard.html" id="details-footer-link">Return to Dashboard</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/storage.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/auth.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const session = window.MediQ.requireAuth();
+      if (!session) return;
+
+      const urlParams = new URLSearchParams(window.location.search);
+      const aptId = urlParams.get('id');
+      const isNew = urlParams.get('new') === '1';
+
+      if (isNew) {
+        const alertEl = document.getElementById('new-apt-alert');
+        if (alertEl) alertEl.style.display = 'block';
+      }
+
+      // Dynamic nav links according to session role
+      const navLinks = document.getElementById('details-nav-links');
+      const headerActions = document.getElementById('det-header-actions');
+      const brandLink = document.getElementById('details-brand-link');
+      const footerLink = document.getElementById('details-footer-link');
+
+      if (session.role === 'admin') {
+        if (brandLink) brandLink.href = 'admin-dashboard.html';
+        if (footerLink) {
+          footerLink.href = 'admin-dashboard.html';
+          footerLink.textContent = 'Return to Admin Dashboard';
+        }
+        navLinks.innerHTML = `
+          <li><a href="admin-dashboard.html">Dashboard</a></li>
+          <li><a href="manage-doctors.html">Doctors</a></li>
+          <li><a href="manage-slots.html">Slots</a></li>
+          <li><a href="manage-appointments.html" class="active">Appointments</a></li>
+          <li><a href="about.html">About &amp; Services</a></li>
+        `;
+        headerActions.innerHTML = `<a href="manage-appointments.html" class="btn btn-secondary btn-sm">&larr; Back to Requests</a>`;
+      } else {
+        if (brandLink) brandLink.href = 'user-dashboard.html';
+        if (footerLink) {
+          footerLink.href = 'user-dashboard.html';
+          footerLink.textContent = 'Return to Patient Dashboard';
+        }
+        navLinks.innerHTML = `
+          <li><a href="user-dashboard.html">Dashboard</a></li>
+          <li><a href="book-appointment.html">Book Appointment</a></li>
+          <li><a href="my-appointments.html" class="active">My Appointments</a></li>
+          <li><a href="about.html">About &amp; Services</a></li>
+        `;
+        headerActions.innerHTML = `<a href="my-appointments.html" class="btn btn-secondary btn-sm">&larr; Back to My Appointments</a>`;
+      }
+
+      if (!aptId) {
+        alert('No appointment ID provided.');
+        window.location.href = session.role === 'admin' ? 'manage-appointments.html' : 'my-appointments.html';
+        return;
+      }
+
+      const apt = window.MediQStorage.getAppointmentById(aptId);
+      if (!apt) {
+        alert('Appointment not found.');
+        window.location.href = session.role === 'admin' ? 'manage-appointments.html' : 'my-appointments.html';
+        return;
+      }
+
+      // Render Data
+      document.getElementById('det-apt-id').textContent = `Appointment ${apt.id}`;
+      document.getElementById('det-status-badge').innerHTML = window.MediQ.getStatusBadge(apt.status);
+      document.getElementById('det-status-display').innerHTML = window.MediQ.getStatusBadge(apt.status);
+      document.getElementById('det-created-time').textContent = `Request Submitted: ${window.MediQ.formatTimestampFriendly(apt.createdAt)}`;
+
+      // Patient
+      document.getElementById('det-patient-name').textContent = apt.patientDetails.fullName;
+      document.getElementById('det-patient-meta').textContent = `${apt.patientDetails.age} yrs / ${apt.patientDetails.gender}`;
+      document.getElementById('det-patient-contact').textContent = apt.patientDetails.contact;
+      document.getElementById('det-patient-reason').textContent = apt.patientDetails.reason;
+      document.getElementById('det-patient-notes').textContent = apt.patientDetails.notes || 'None provided.';
+
+      // Doctor & Slot
+      const doctor = window.MediQStorage.getDoctorById(apt.doctorId);
+      const slot = window.MediQStorage.getSlotById(apt.slotId);
+
+      document.getElementById('det-doctor-name').textContent = doctor ? `Dr. ${doctor.name}` : 'Unknown Doctor';
+      document.getElementById('det-doctor-specialty').textContent = doctor ? doctor.specialty : 'N/A';
+      document.getElementById('det-doctor-quals').textContent = doctor ? doctor.qualifications : 'N/A';
+
+      // Show doctor profile image if available
+      const doctorPhotoEl = document.getElementById('det-doctor-photo');
+      if (doctorPhotoEl && doctor && doctor.profileImage) {
+        doctorPhotoEl.style.display = 'block';
+        doctorPhotoEl.innerHTML = '';
+        const docImg = document.createElement('img');
+        docImg.src = doctor.profileImage;
+        docImg.alt = `Dr. ${doctor.name}`;
+        docImg.style.cssText = 'width: 72px; height: 72px; border-radius: 50%; object-fit: cover; border: 3px solid var(--color-primary); margin: 0 auto; display: block;';
+        doctorPhotoEl.appendChild(docImg);
+      }
+
+      document.getElementById('det-slot-date').textContent = slot ? window.MediQ.formatDateFriendly(slot.date) : 'N/A';
+      document.getElementById('det-slot-time').textContent = slot ? `${slot.startTime} – ${slot.endTime} (10 Minutes)` : 'N/A';
+
+      // Status Explanation & Decision
+      const statusExp = document.getElementById('det-status-explanation');
+      const decisionBox = document.getElementById('det-decision-box');
+      const actionsContainer = document.getElementById('det-actions-container');
+
+      if (apt.status === 'PENDING') {
+        statusExp.textContent = 'This request is pending review by hospital administration. The 10-minute slot is temporarily reserved.';
+      } else if (apt.status === 'APPROVED') {
+        statusExp.textContent = 'This appointment has been verified and approved. The 10-minute slot is booked and a consultation token is issued.';
+        decisionBox.style.display = 'block';
+        document.getElementById('det-decision-time').textContent = window.MediQ.formatTimestampFriendly(apt.decisionAt);
+      } else if (apt.status === 'REJECTED') {
+        statusExp.textContent = 'This request was rejected by administration. The slot has been released back into availability.';
+        decisionBox.style.display = 'block';
+        document.getElementById('det-decision-time').textContent = window.MediQ.formatTimestampFriendly(apt.decisionAt);
+        if (apt.rejectionReason) {
+          document.getElementById('det-rejection-reason-box').style.display = 'block';
+          document.getElementById('det-rejection-reason').textContent = apt.rejectionReason;
+        }
+      } else if (apt.status === 'EXPIRED') {
+        statusExp.textContent = 'The scheduled time window for this appointment has passed without approval and is expired.';
+      }
+
+      // Actions
+      actionsContainer.innerHTML = '';
+
+      if (apt.status === 'APPROVED') {
+        const tokenBtn = document.createElement('a');
+        tokenBtn.href = `appointment-token.html?id=${apt.id}`;
+        tokenBtn.className = 'btn btn-primary btn-block';
+        tokenBtn.textContent = 'View & Print Token';
+        actionsContainer.appendChild(tokenBtn);
+      }
+
+      // Admin Actions
+      if (session.role === 'admin' && apt.status === 'PENDING') {
+        const approveBtn = document.createElement('button');
+        approveBtn.className = 'btn btn-success btn-block';
+        approveBtn.textContent = 'Approve & Issue Token';
+        approveBtn.addEventListener('click', () => {
+          window.MediQ.showConfirm({
+            title: 'Approve Appointment',
+            message: `Approve appointment ${apt.id}? This will permanently book the slot and issue an official token.`,
+            confirmText: 'Approve',
+            onConfirm: () => {
+              const res = window.MediQStorage.approveAppointment(apt.id);
+              if (res.success) {
+                window.MediQ.showToast('Appointment approved successfully!', 'success');
+                setTimeout(() => window.location.reload(), 400);
+              } else {
+                window.MediQ.showToast(res.error, 'error');
+              }
+            }
+          });
+        });
+
+        const rejectBtn = document.createElement('button');
+        rejectBtn.className = 'btn btn-outline-danger btn-block';
+        rejectBtn.textContent = 'Reject Request';
+        rejectBtn.addEventListener('click', () => {
+          const reason = prompt('Please enter rejection reason:', 'Slot unavailable or schedule conflict.');
+          if (reason === null) return;
+          window.MediQ.showConfirm({
+            title: 'Reject Appointment',
+            message: `Reject appointment ${apt.id}? Slot will be released.`,
+            confirmText: 'Reject',
+            isDanger: true,
+            onConfirm: () => {
+              const res = window.MediQStorage.rejectAppointment(apt.id, reason);
+              if (res.success) {
+                window.MediQ.showToast('Appointment rejected.', 'info');
+                setTimeout(() => window.location.reload(), 400);
+              } else {
+                window.MediQ.showToast(res.error, 'error');
+              }
+            }
+          });
+        });
+
+        actionsContainer.appendChild(approveBtn);
+        actionsContainer.appendChild(rejectBtn);
+      }
+    });
+  </script>
+</body>
+</html>

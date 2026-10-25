@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manage Appointments — MediQ</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body id="manage-appointments-page">
+
+  <!-- Navigation Header -->
+  <header class="navbar">
+    <div class="container">
+      <a href="admin-dashboard.html" class="nav-brand">
+        <img src="images/logo.png" alt="MediQ Official Logo">
+      </a>
+      <ul class="nav-links">
+        <li><a href="admin-dashboard.html">Dashboard</a></li>
+        <li><a href="manage-doctors.html">Manage Doctors</a></li>
+        <li><a href="manage-slots.html">Manage Slots</a></li>
+        <li><a href="manage-appointments.html" class="active">Appointment Requests</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="btn btn-secondary btn-sm btn-action-logout">Log Out</button>
+        <button class="nav-toggle" aria-label="Toggle Navigation">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <div class="container">
+      <div class="page-header">
+        <div>
+          <h1 class="page-title">Appointment Request Management</h1>
+          <p class="page-subtitle">Review patient submissions, verify slot reservations, and issue OPD consultation tokens</p>
+        </div>
+        <div class="page-actions">
+          <a href="admin-dashboard.html" class="btn btn-secondary btn-sm">&larr; Return to Dashboard</a>
+        </div>
+      </div>
+
+      <!-- Filters Bar -->
+      <div class="filter-bar">
+        <div class="filter-inputs">
+          <div>
+            <label for="filter-apt-status" style="font-size: 0.8rem; font-weight: 600; display: block; margin-bottom: 0.2rem;">Status:</label>
+            <select id="filter-apt-status" class="form-control">
+              <option value="ALL">All Statuses</option>
+              <option value="PENDING" selected>Pending Review</option>
+              <option value="APPROVED">Approved</option>
+              <option value="REJECTED">Rejected</option>
+              <option value="EXPIRED">Expired</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="filter-apt-doctor" style="font-size: 0.8rem; font-weight: 600; display: block; margin-bottom: 0.2rem;">Doctor:</label>
+            <select id="filter-apt-doctor" class="form-control">
+              <option value="ALL">All Doctors</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="filter-apt-specialty" style="font-size: 0.8rem; font-weight: 600; display: block; margin-bottom: 0.2rem;">Specialty:</label>
+            <select id="filter-apt-specialty" class="form-control">
+              <option value="ALL">All Specialties</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="filter-apt-date" style="font-size: 0.8rem; font-weight: 600; display: block; margin-bottom: 0.2rem;">Appointment Date:</label>
+            <input type="date" id="filter-apt-date" class="form-control">
+          </div>
+
+          <div style="align-self: flex-end;">
+            <button type="button" id="btn-clear-apt-filters" class="btn btn-secondary btn-sm" style="height: 38px;">Reset Filters</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Appointments List Card -->
+      <div class="card" style="padding: 0; overflow: hidden;">
+        <div class="table-responsive" style="border: none; border-radius: 0;">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Patient Details</th>
+                <th>Assigned Doctor</th>
+                <th>Date &amp; Slot (10m)</th>
+                <th>Submitted At</th>
+                <th>Status &amp; Countdown</th>
+                <th>Administrative Actions</th>
+              </tr>
+            </thead>
+            <tbody id="appointments-table-body">
+              <!-- Populated by js/appointments.js -->
+            </tbody>
+          </table>
+        </div>
+
+        <div id="appointments-empty" class="empty-state" style="display: none;">
+          <div class="empty-state-icon">📋</div>
+          <h3>No appointments match your filters</h3>
+          <p>Try resetting your filter parameters or checking all statuses.</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <div>&copy; 2026 MediQ Hospital Systems. All rights reserved. Hospital Administrative Portal.</div>
+        <div><a href="admin-dashboard.html">Return to Dashboard</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/storage.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/appointments.js"></script>
+</body>
+</html>

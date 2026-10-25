@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Patient Login — MediQ</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/auth.css">
+</head>
+<body>
+
+  <!-- Navigation Header -->
+  <header class="navbar">
+    <div class="container">
+      <a href="index.html" class="nav-brand">
+        <img src="images/logo.png" alt="MediQ Official Logo">
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About & Services</a></li>
+        <li><a href="user-login.html" class="active">Patient Portal</a></li>
+        <li><a href="admin-login.html">Hospital Admin Portal</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="admin-login.html" class="btn btn-secondary btn-sm">Admin Portal</a>
+        <button class="nav-toggle" aria-label="Toggle Navigation">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <div class="auth-wrapper">
+      <div class="auth-card">
+        <div class="auth-header">
+          <img src="images/logo.png" alt="MediQ Logo" class="auth-logo">
+          <span class="auth-role-badge role-patient">Patient Portal</span>
+          <h1 class="auth-title">Welcome Back</h1>
+          <p class="auth-subtitle">Sign in to manage appointments and access tokens</p>
+        </div>
+
+        <!-- Demonstration Quick Fill Box -->
+        <!-- <div class="demo-credentials-box">
+          <h4>
+            <span>Demo Patient Account</span>
+            <button type="button" id="btn-fill-demo-patient" class="btn-fill-demo">Quick Fill</button>
+          </h4>
+          <p>Email: <code>john.doe@example.com</code></p>
+          <p>Password: <code>Patient@123</code></p>
+        </div> -->
+
+        <form id="form-patient-login">
+          <div class="form-group">
+            <label for="login-email" class="form-label required">Email Address</label>
+            <input type="email" id="login-email" class="form-control" placeholder="e.g. john.doe@example.com" required autocomplete="email">
+          </div>
+
+          <div class="form-group">
+            <label for="login-password" class="form-label required">Password</label>
+            <div class="input-password-wrapper">
+              <input type="password" id="login-password" class="form-control" placeholder="Enter your password" required autocomplete="current-password">
+              <button type="button" class="password-toggle-btn" data-target="login-password">Show</button>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block btn-lg" style="margin-top: 1.5rem;">
+            Sign In to Patient Portal
+          </button>
+        </form>
+
+        <div class="auth-footer">
+          Don't have an account yet? <a href="user-signup.html" class="auth-switch-link">Sign up as a Patient</a>
+          <!-- <div style="margin-top: 0.75rem;">
+            Are you hospital staff? <a href="admin-login.html">Go to Admin Login</a>
+          </div> -->
+        </div>
+
+        <div class="auth-notice">
+          Prototype Notice: Demonstration authentication using localStorage session tracking.
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <div>&copy; 2026 MediQ Hospital Systems. All rights reserved.</div>
+        <div><a href="index.html">Back to Home</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/storage.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>

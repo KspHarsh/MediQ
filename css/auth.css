@@ -1,0 +1,148 @@
+/* ==========================================================================
+   MediQ Authentication Styles (Patient & Admin Login/Signup)
+   ========================================================================== */
+
+.auth-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - var(--header-height) - 180px);
+  padding: 2.5rem 1rem;
+}
+
+.auth-card {
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem;
+  width: 100%;
+  max-width: 480px;
+  box-shadow: var(--shadow-md);
+}
+
+.auth-card.auth-card-wide {
+  max-width: 580px;
+}
+
+.auth-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.auth-header .auth-logo {
+  height: 52px;
+  margin: 0 auto 1.25rem;
+}
+
+.auth-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-text-main);
+  margin-bottom: 0.35rem;
+}
+
+.auth-subtitle {
+  color: var(--color-text-secondary);
+  font-size: 0.925rem;
+}
+
+.auth-role-badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius-full);
+  margin-bottom: 0.75rem;
+}
+
+.role-patient {
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+}
+
+.role-admin {
+  background: #FEF3C7;
+  color: #B45309;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.demo-credentials-box {
+  background: #F8FAFC;
+  border: 1px dashed #CBD5E1;
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.825rem;
+}
+
+.demo-credentials-box h4 {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-text-main);
+  margin-bottom: 0.35rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.demo-credentials-box p {
+  color: var(--color-text-secondary);
+  margin-bottom: 0.5rem;
+}
+
+.demo-credentials-box code {
+  background: #EDF2F7;
+  padding: 0.15rem 0.35rem;
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  color: #0F172A;
+}
+
+.btn-fill-demo {
+  background: none;
+  border: none;
+  color: var(--color-primary);
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  font-size: 0.8rem;
+  text-decoration: underline;
+}
+
+.auth-footer {
+  text-align: center;
+  margin-top: 1.75rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--color-border);
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+}
+
+.auth-switch-link {
+  font-weight: 600;
+}
+
+.auth-notice {
+  margin-top: 1.25rem;
+  font-size: 0.775rem;
+  color: var(--color-text-muted);
+  text-align: center;
+  line-height: 1.4;
+}
+
+@media (max-width: 576px) {
+  .auth-card {
+    padding: 1.75rem 1.25rem;
+  }
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+}

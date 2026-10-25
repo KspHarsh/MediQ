@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Hospital Appointment — MediQ</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/booking.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body id="book-appointment-page">
+
+  <!-- Navigation Header -->
+  <header class="navbar">
+    <div class="container">
+      <a href="user-dashboard.html" class="nav-brand">
+        <img src="images/logo.png" alt="MediQ Official Logo">
+      </a>
+      <ul class="nav-links">
+        <li><a href="user-dashboard.html">Dashboard</a></li>
+        <li><a href="book-appointment.html" class="active">Book Appointment</a></li>
+        <li><a href="my-appointments.html">My Appointments</a></li>
+        <li><a href="about.html">About & Services</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="btn btn-secondary btn-sm btn-action-logout">Log Out</button>
+        <button class="nav-toggle" aria-label="Toggle Navigation">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <div class="container">
+      <div class="page-header">
+        <div>
+          <h1 class="page-title">Book an Appointment</h1>
+          <p class="page-subtitle">Reserve a confirmed 10-minute outpatient consultation slot</p>
+        </div>
+        <div class="page-actions">
+          <a href="user-dashboard.html" class="btn btn-secondary btn-sm">&larr; Return to Dashboard</a>
+        </div>
+      </div>
+
+      <!-- Multi-step Stepper Indicator -->
+      <div class="booking-stepper">
+        <div class="step-item active" data-step="1">
+          <div class="step-circle">1</div>
+          <div class="step-label">Specialty</div>
+        </div>
+        <div class="step-item" data-step="2">
+          <div class="step-circle">2</div>
+          <div class="step-label">Doctor</div>
+        </div>
+        <div class="step-item" data-step="3">
+          <div class="step-circle">3</div>
+          <div class="step-label">Date &amp; Slot</div>
+        </div>
+        <div class="step-item" data-step="4">
+          <div class="step-circle">4</div>
+          <div class="step-label">Details &amp; Confirm</div>
+        </div>
+      </div>
+
+      <!-- ================= STEP 1: SELECT SPECIALTY ================= -->
+      <div id="booking-step-1" class="card">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title">Step 1: Choose Clinical Specialty</h2>
+            <p class="card-subtitle">Select the department corresponding to your medical requirement</p>
+          </div>
+        </div>
+        <div id="specialty-selection-grid" class="specialty-grid">
+          <!-- Populated by js/booking.js -->
+        </div>
+      </div>
+
+      <!-- ================= STEP 2: SELECT DOCTOR ================= -->
+      <div id="booking-step-2" class="card" style="display: none;">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title">Step 2: Choose Specialist Doctor</h2>
+            <p class="card-subtitle">
+              Available active physicians in <strong id="selected-specialty-title" style="color: var(--color-primary);">Specialty</strong>
+            </p>
+          </div>
+          <button type="button" id="btn-step2-back" class="btn btn-secondary btn-sm">&larr; Change Specialty</button>
+        </div>
+        <div id="doctor-selection-grid" class="doctor-select-grid">
+          <!-- Populated by js/booking.js -->
+        </div>
+      </div>
+
+      <!-- ================= STEP 3: SELECT DATE & 10-MIN SLOT ================= -->
+      <div id="booking-step-3" class="card" style="display: none;">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title">Step 3: Choose Date &amp; 10-Minute Slot</h2>
+            <p class="card-subtitle">Select your preferred date and an available consultation window</p>
+          </div>
+          <button type="button" id="btn-step3-back" class="btn btn-secondary btn-sm">&larr; Change Doctor</button>
+        </div>
+
+        <div id="step3-doctor-info" style="margin-bottom: 1.5rem; padding: 1rem; background: #F8FAFC; border: 1px solid var(--color-border); border-radius: var(--radius-sm);">
+          <!-- Doctor brief -->
+        </div>
+
+        <div class="form-group" style="max-width: 320px;">
+          <label for="booking-date-picker" class="form-label required">Consultation Date</label>
+          <input type="date" id="booking-date-picker" class="form-control" required>
+        </div>
+
+        <div class="slot-select-container">
+          <label class="form-label required">Select an Available 10-Minute Time Slot</label>
+          <div style="display: flex; gap: 1rem; font-size: 0.8rem; margin-bottom: 0.75rem; flex-wrap: wrap;">
+            <span style="display: flex; align-items: center; gap: 0.35rem;">
+              <span style="display: inline-block; width: 12px; height: 12px; background: #F0FDF4; border: 1px solid #A7F3D0; border-radius: 2px;"></span> Available
+            </span>
+            <span style="display: flex; align-items: center; gap: 0.35rem;">
+              <span style="display: inline-block; width: 12px; height: 12px; background: #FFFBEB; border: 1px solid #FCD34D; border-radius: 2px;"></span> Pending Review
+            </span>
+            <span style="display: flex; align-items: center; gap: 0.35rem;">
+              <span style="display: inline-block; width: 12px; height: 12px; background: #EFF6FF; border: 1px solid #BFDBFE; border-radius: 2px;"></span> Booked
+            </span>
+          </div>
+          <div id="booking-slots-container">
+            <!-- Slot buttons rendered here -->
+          </div>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; margin-top: 1.5rem; border-top: 1px solid var(--color-border); padding-top: 1rem;">
+          <button type="button" id="btn-step3-next" class="btn btn-primary" disabled>
+            Continue to Patient Details &rarr;
+          </button>
+        </div>
+      </div>
+
+      <!-- ================= STEP 4: PATIENT DETAILS & SUMMARY ================= -->
+      <div id="booking-step-4" style="display: none;">
+        <div class="details-grid">
+          <!-- Form Section -->
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">Step 4: Patient Consultation Details</h2>
+                <p class="card-subtitle">Provide details for the medical staff</p>
+              </div>
+              <button type="button" id="btn-step4-back" class="btn btn-secondary btn-sm">&larr; Back to Slots</button>
+            </div>
+
+            <form id="form-patient-booking">
+              <div class="form-group">
+                <label for="patient-name" class="form-label required">Patient Full Name</label>
+                <input type="text" id="patient-name" class="form-control" placeholder="Full legal name" required>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="patient-age" class="form-label required">Age</label>
+                  <input type="number" id="patient-age" class="form-control" min="1" max="130" placeholder="e.g. 35" required>
+                </div>
+                <div class="form-group">
+                  <label for="patient-gender" class="form-label required">Gender</label>
+                  <select id="patient-gender" class="form-control" required>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="patient-contact" class="form-label required">Contact Phone Number</label>
+                <input type="tel" id="patient-contact" class="form-control" placeholder="10-digit mobile number" required maxlength="10" pattern="[0-9]{10}" inputmode="numeric">
+              </div>
+
+              <div class="form-group">
+                <label for="patient-reason" class="form-label required">Primary Reason for Visit / Symptoms</label>
+                <textarea id="patient-reason" class="form-control" rows="3" placeholder="Briefly describe the clinical concern or symptoms prompting this appointment..." required></textarea>
+              </div>
+
+              <div class="form-group">
+                <label for="patient-notes" class="form-label">Additional Medical Notes / Previous Reports (Optional)</label>
+                <textarea id="patient-notes" class="form-control" rows="2" placeholder="Relevant past medical history, existing medication, or allergies..."></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-success btn-lg btn-block" style="margin-top: 1rem;">
+                Submit Appointment Request
+              </button>
+            </form>
+          </div>
+
+          <!-- Summary Sidebar -->
+          <div>
+            <div class="summary-card">
+              <h3 style="font-size: 1.15rem; font-weight: 700; margin-bottom: 1rem; border-bottom: 1px solid var(--color-border); padding-bottom: 0.5rem;">
+                Booking Summary
+              </h3>
+              <div class="summary-list">
+                <div class="summary-item">
+                  <span class="summary-item-label">Specialty</span>
+                  <span class="summary-item-val" id="summary-specialty">-</span>
+                </div>
+                <div class="summary-item">
+                  <span class="summary-item-label">Consulting Doctor</span>
+                  <span class="summary-item-val" id="summary-doctor-name">-</span>
+                </div>
+                <div class="summary-item">
+                  <span class="summary-item-label">Appointment Date</span>
+                  <span class="summary-item-val" id="summary-date">-</span>
+                </div>
+                <div class="summary-item">
+                  <span class="summary-item-label">Time Window</span>
+                  <span class="summary-item-val" id="summary-time" style="color: var(--color-primary);">-</span>
+                </div>
+                <div class="summary-item">
+                  <span class="summary-item-label">Duration</span>
+                  <span class="summary-item-val">Strict 10 Minutes</span>
+                </div>
+                <div class="summary-item">
+                  <span class="summary-item-label">Initial Status</span>
+                  <span class="summary-item-val"><span class="badge badge-pending">PENDING REVIEW</span></span>
+                </div>
+              </div>
+
+              <div class="alert alert-info" style="margin-top: 1.25rem; font-size: 0.8rem; line-height: 1.4;">
+                <strong>Reservation Policy:</strong>
+                Submitting this request temporarily locks this slot as Pending. The hospital administrator will review and issue your printable confirmation token.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <div>&copy; 2026 MediQ Hospital Systems. All rights reserved.</div>
+        <div><a href="user-dashboard.html">Return to Dashboard</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/storage.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/booking.js"></script>
+</body>
+</html>

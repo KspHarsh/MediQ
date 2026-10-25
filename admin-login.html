@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hospital Admin Login — MediQ</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/auth.css">
+</head>
+<body>
+
+  <!-- Navigation Header -->
+  <header class="navbar">
+    <div class="container">
+      <a href="index.html" class="nav-brand">
+        <img src="images/logo.png" alt="MediQ Official Logo">
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About & Services</a></li>
+        <li><a href="user-login.html">Patient Portal</a></li>
+        <li><a href="admin-login.html" class="active">Hospital Admin Portal</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="user-login.html" class="btn btn-secondary btn-sm">Patient Portal</a>
+        <button class="nav-toggle" aria-label="Toggle Navigation">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <div class="auth-wrapper">
+      <div class="auth-card">
+        <div class="auth-header">
+          <img src="images/logo.png" alt="MediQ Logo" class="auth-logo">
+          <span class="auth-role-badge role-admin">Hospital Admin Portal</span>
+          <h1 class="auth-title">Administrative Sign In</h1>
+          <p class="auth-subtitle">Restricted to hospital desk operators and OPD administrative personnel</p>
+        </div>
+
+        <!-- Documented Demo Admin Credentials -->
+        <!-- <div class="demo-credentials-box">
+          <h4>
+            <span>Documented Demo Admin Account</span>
+            <button type="button" id="btn-fill-demo-admin" class="btn-fill-demo">Quick Fill</button>
+          </h4>
+          <p>Email: <code>admin@mediq.com</code></p>
+          <p>Password: <code>Admin@123</code></p>
+        </div> -->
+
+        <form id="form-admin-login">
+          <div class="form-group">
+            <label for="login-admin-email" class="form-label required">Administrator Email</label>
+            <input type="email" id="login-admin-email" class="form-control" placeholder="admin@mediq.com" required autocomplete="email">
+          </div>
+
+          <div class="form-group">
+            <label for="login-admin-password" class="form-label required">Password</label>
+            <div class="input-password-wrapper">
+              <input type="password" id="login-admin-password" class="form-control" placeholder="Enter administrative password" required autocomplete="current-password">
+              <button type="button" class="password-toggle-btn" data-target="login-admin-password">Show</button>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block btn-lg" style="margin-top: 1.5rem;">
+            Sign In to Hospital Portal
+          </button>
+        </form>
+<!-- 
+        <div class="auth-footer">
+          Need a demonstration admin account? <a href="admin-signup.html" class="auth-switch-link">Register Admin</a>
+          <div style="margin-top: 0.75rem;">
+            Looking for patient scheduling? <a href="user-login.html">Go to Patient Portal</a>
+          </div>
+        </div> -->
+
+        <div class="auth-notice">
+          Demonstration Prototype Notice: Client-side route authentication and localStorage storage.
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <div>&copy; 2026 MediQ Hospital Systems. All rights reserved.</div>
+        <div><a href="index.html">Back to Home</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/storage.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>

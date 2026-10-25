@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About MediQ — Hospital Appointment Management System</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body id="about-page">
+
+  <!-- Navigation Header -->
+  <header class="navbar">
+    <div class="container">
+      <a href="index.html" class="nav-brand" id="about-brand-link">
+        <img src="images/logo.png" alt="MediQ Official Logo">
+      </a>
+      <ul class="nav-links" id="about-nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html" class="active">About &amp; Services</a></li>
+        <li><a href="user-login.html">Patient Portal</a></li>
+        <li><a href="admin-login.html">Hospital Admin Portal</a></li>
+      </ul>
+      <div class="nav-actions" id="about-nav-actions">
+        <a href="user-login.html" class="btn btn-secondary btn-sm">Patient Login</a>
+        <a href="admin-login.html" class="btn btn-primary btn-sm">Admin Login</a>
+        <button class="nav-toggle" aria-label="Toggle Navigation">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <div class="container">
+      <div class="page-header">
+        <div>
+          <h1 class="page-title">About MediQ System</h1>
+          <p class="page-subtitle">Deterministic slot-based outpatient scheduling architecture</p>
+        </div>
+        <div class="page-actions" id="about-header-actions">
+          <!-- Populated by script based on user session -->
+        </div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 2rem;">
+        <!-- Core Concept Card -->
+        <div class="card">
+          <h2 class="card-title" style="font-size: 1.35rem; margin-bottom: 0.75rem;">Purpose &amp; Operating Principles</h2>
+          <p style="color: var(--color-text-secondary); line-height: 1.6; margin-bottom: 1rem;">
+            MediQ was engineered to solve the unpredictability of outpatient hospital departments (OPD). Unlike generic calendar systems that generate bulk blocks of time, MediQ enforces individual, doctor-specific 10-minute consultation slots manually created by hospital administrative staff.
+          </p>
+          <div class="alert alert-info">
+            <div>
+              <strong>Strict 10-Minute Duration Invariant:</strong>
+              Every consultation slot configured in MediQ has an exact duration of 10 minutes (for example, 09:00–09:10, 09:10–09:20). Slots with durations not equal to 10 minutes (e.g. 09:00–09:15) are strictly rejected by the system.
+            </div>
+          </div>
+        </div>
+
+        <!-- Workflow Comparison -->
+        <div class="card">
+          <h2 class="card-title" style="font-size: 1.35rem; margin-bottom: 1.25rem;">Workflow &amp; State Invariants</h2>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
+            <div style="border: 1px solid var(--color-border); border-radius: var(--radius-sm); padding: 1.25rem; background: #FAFCFF;">
+              <h3 style="font-weight: 700; color: var(--color-primary); margin-bottom: 0.5rem;">1. Administrative Control</h3>
+              <p style="font-size: 0.875rem; color: var(--color-text-secondary); line-height: 1.5;">
+                Doctors do not have rigid, automatically assumed working hours. Hospital administrators specify customized schedules per doctor and date, preventing schedule conflicts and ensuring real-time operational flexibility.
+              </p>
+            </div>
+            <div style="border: 1px solid var(--color-border); border-radius: var(--radius-sm); padding: 1.25rem; background: #FAFCFF;">
+              <h3 style="font-weight: 700; color: #0E7422; margin-bottom: 0.5rem;">2. Collision Prevention</h3>
+              <p style="font-size: 0.875rem; color: var(--color-text-secondary); line-height: 1.5;">
+                When a patient submits an appointment request, the selected slot is temporarily locked in a <code>PENDING</code> reservation. No other patient can select or double-book that slot during this window.
+              </p>
+            </div>
+            <div style="border: 1px solid var(--color-border); border-radius: var(--radius-sm); padding: 1.25rem; background: #FAFCFF;">
+              <h3 style="font-weight: 700; color: #B45309; margin-bottom: 0.5rem;">3. Token Issuance</h3>
+              <p style="font-size: 0.875rem; color: var(--color-text-secondary); line-height: 1.5;">
+                Upon administrative review and approval, the slot status converts to <code>BOOKED</code>, and an official printable consultation token is generated for the patient, complete with clinical tracking details.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Prototype Disclaimer -->
+        <div class="card" style="border-left: 4px solid var(--color-status-pending);">
+          <h3 style="font-size: 1.15rem; font-weight: 700; color: #92400E; margin-bottom: 0.5rem;">Static Prototype Architecture Notice</h3>
+          <p style="font-size: 0.9rem; color: var(--color-text-secondary); line-height: 1.6;">
+            This implementation is a first-phase static frontend demonstration built exclusively with HTML5, CSS3, and modern vanilla JavaScript (ES6+). Data is persisted in browser <code>localStorage</code>. As a static prototype without a server-side database:
+          </p>
+          <ul style="margin: 0.75rem 0 0 1.25rem; font-size: 0.875rem; color: var(--color-text-secondary); line-height: 1.6;">
+            <li>Data is local to this specific browser and origin; records are not synchronized across distinct physical devices or other browsers.</li>
+            <li>Client-side route guards and demo password hashing simulate demonstration authentication workflows only and do not constitute a cryptographic production security boundary.</li>
+            <li>All hospital names, doctors, and appointment identifiers are demonstration placeholders.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <div>&copy; 2026 MediQ Hospital Systems. All rights reserved.</div>
+        <div id="about-footer-return">
+          <a href="index.html" id="about-footer-link">Return to Home</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/storage.js"></script>
+  <script src="js/common.js"></script>
+  <script>
+    // Customize navigation on about.html when user is logged in
+    document.addEventListener('DOMContentLoaded', () => {
+      const session = window.MediQStorage ? window.MediQStorage.getSession() : null;
+      if (!session) return;
+
+      const brandLink = document.getElementById('about-brand-link');
+      const navLinks = document.getElementById('about-nav-links');
+      const footerLink = document.getElementById('about-footer-link');
+      const headerActions = document.getElementById('about-header-actions');
+
+      if (session.role === 'patient') {
+        if (brandLink) brandLink.href = 'user-dashboard.html';
+        if (footerLink) {
+          footerLink.href = 'user-dashboard.html';
+          footerLink.textContent = 'Return to Dashboard';
+        }
+        if (headerActions) {
+          headerActions.innerHTML = `<a href="user-dashboard.html" class="btn btn-secondary btn-sm">&larr; Return to Dashboard</a>`;
+        }
+        if (navLinks) {
+          navLinks.innerHTML = `
+            <li><a href="user-dashboard.html">Dashboard</a></li>
+            <li><a href="book-appointment.html">Book Appointment</a></li>
+            <li><a href="my-appointments.html">My Appointments</a></li>
+            <li><a href="about.html" class="active">About &amp; Services</a></li>
+          `;
+        }
+      } else if (session.role === 'admin') {
+        if (brandLink) brandLink.href = 'admin-dashboard.html';
+        if (footerLink) {
+          footerLink.href = 'admin-dashboard.html';
+          footerLink.textContent = 'Return to Admin Dashboard';
+        }
+        if (headerActions) {
+          headerActions.innerHTML = `<a href="admin-dashboard.html" class="btn btn-secondary btn-sm">&larr; Return to Dashboard</a>`;
+        }
+        if (navLinks) {
+          navLinks.innerHTML = `
+            <li><a href="admin-dashboard.html">Dashboard</a></li>
+            <li><a href="manage-doctors.html">Manage Doctors</a></li>
+            <li><a href="manage-slots.html">Manage Slots</a></li>
+            <li><a href="manage-appointments.html">Requests</a></li>
+            <li><a href="about.html" class="active">About &amp; Services</a></li>
+          `;
+        }
+      }
+    });
+  </script>
+</body>
+</html>

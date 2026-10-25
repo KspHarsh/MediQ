@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Appointments — MediQ</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body id="my-appointments-page">
+
+  <!-- Navigation Header -->
+  <header class="navbar">
+    <div class="container">
+      <a href="user-dashboard.html" class="nav-brand">
+        <img src="images/logo.png" alt="MediQ Official Logo">
+      </a>
+      <ul class="nav-links">
+        <li><a href="user-dashboard.html">Dashboard</a></li>
+        <li><a href="book-appointment.html">Book Appointment</a></li>
+        <li><a href="my-appointments.html" class="active">My Appointments</a></li>
+        <li><a href="about.html">About & Services</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="btn btn-secondary btn-sm btn-action-logout">Log Out</button>
+        <button class="nav-toggle" aria-label="Toggle Navigation">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <div class="container">
+      <div class="page-header">
+        <div>
+          <h1 class="page-title">My Hospital Appointments</h1>
+          <p class="page-subtitle">Inspect your requested consultations, status decisions, and printable tokens</p>
+        </div>
+        <div class="page-actions">
+          <a href="book-appointment.html" class="btn btn-primary">+ Book Appointment</a>
+        </div>
+      </div>
+
+      <!-- Filter Bar -->
+      <div class="filter-bar">
+        <div class="filter-inputs">
+          <label for="filter-my-status" style="font-size: 0.875rem; font-weight: 600;">Filter by Status:</label>
+          <select id="filter-my-status" class="form-control" style="width: auto;">
+            <option value="ALL">All Statuses</option>
+            <option value="PENDING">Pending Review</option>
+            <option value="APPROVED">Approved (Tokens Available)</option>
+            <option value="REJECTED">Rejected</option>
+            <option value="EXPIRED">Expired</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Appointments Table Card -->
+      <div class="card" style="padding: 0; overflow: hidden;">
+        <div class="table-responsive" style="border: none; border-radius: 0;">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Appointment ID</th>
+                <th>Doctor &amp; Specialty</th>
+                <th>Scheduled Date &amp; Time (10m)</th>
+                <th>Request Submitted</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="my-apts-table-body">
+              <!-- Populated by js/user-dashboard.js -->
+            </tbody>
+          </table>
+        </div>
+
+        <div id="my-apts-empty" class="empty-state" style="display: none;">
+          <div class="empty-state-icon">📋</div>
+          <h3>No appointments match your filter</h3>
+          <p>You have no appointments in this status category.</p>
+          <a href="book-appointment.html" class="btn btn-primary">Book New Appointment</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <div>&copy; 2026 MediQ Hospital Systems. All rights reserved.</div>
+        <div><a href="user-dashboard.html">Return to Dashboard</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/storage.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/user-dashboard.js"></script>
+</body>
+</html>

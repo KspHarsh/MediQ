@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manage Daily Slots — MediQ</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body id="manage-slots-page">
+
+  <!-- Navigation Header -->
+  <header class="navbar">
+    <div class="container">
+      <a href="admin-dashboard.html" class="nav-brand">
+        <img src="images/logo.png" alt="MediQ Official Logo">
+      </a>
+      <ul class="nav-links">
+        <li><a href="admin-dashboard.html">Dashboard</a></li>
+        <li><a href="manage-doctors.html">Manage Doctors</a></li>
+        <li><a href="manage-slots.html" class="active">Manage Slots</a></li>
+        <li><a href="manage-appointments.html">Appointment Requests</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="btn btn-secondary btn-sm btn-action-logout">Log Out</button>
+        <button class="nav-toggle" aria-label="Toggle Navigation">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <div class="container">
+      <div class="page-header">
+        <div>
+          <h1 class="page-title">Daily Appointment Slot Management</h1>
+          <p class="page-subtitle">Manually schedule exact 10-minute consultation windows for hospital physicians</p>
+        </div>
+        <div class="page-actions">
+          <a href="admin-dashboard.html" class="btn btn-secondary btn-sm">&larr; Return to Dashboard</a>
+        </div>
+      </div>
+
+      <!-- Creation Form Box -->
+      <div class="card" style="margin-bottom: 2rem; border-top: 4px solid var(--color-primary);">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title">Create Individual 10-Minute Slot</h2>
+            <p class="card-subtitle">
+              Every slot must have an exact duration of 10 minutes (e.g. 09:00–09:10, 09:10–09:20). Non-10 minute windows are rejected.
+            </p>
+          </div>
+        </div>
+
+        <form id="form-create-slot">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; align-items: flex-end;">
+            <div class="form-group" style="margin-bottom: 0;">
+              <label for="slot-create-doctor" class="form-label required">Physician</label>
+              <select id="slot-create-doctor" class="form-control" required>
+                <!-- Populated by js/slots.js -->
+              </select>
+            </div>
+
+            <div class="form-group" style="margin-bottom: 0;">
+              <label for="slot-create-date" class="form-label required">Schedule Date</label>
+              <input type="date" id="slot-create-date" class="form-control" required>
+            </div>
+
+            <div class="form-group" style="margin-bottom: 0;">
+              <label for="slot-start-time" class="form-label required">Start Time</label>
+              <input type="time" id="slot-start-time" class="form-control" value="09:00" required step="60">
+            </div>
+
+            <div class="form-group" style="margin-bottom: 0;">
+              <label for="slot-end-time" class="form-label required">End Time (Exact +10m)</label>
+              <input type="time" id="slot-end-time" class="form-control" value="09:10" required step="60">
+            </div>
+
+            <div>
+              <button type="submit" class="btn btn-primary btn-block" style="height: 42px;">
+                + Create 10-Min Slot
+              </button>
+            </div>
+          </div>
+          <div class="form-hint" style="margin-top: 0.75rem;">
+            💡 Entering a start time automatically presets the 10-minute end time. You can manually create multiple slots throughout the day for each doctor. Overlapping slots are automatically detected and blocked.
+          </div>
+        </form>
+      </div>
+
+      <!-- Schedule Filter Toolbar -->
+      <div class="filter-bar">
+        <div class="filter-inputs">
+          <div>
+            <label for="slot-filter-doctor" style="font-size: 0.8rem; font-weight: 600; display: block; margin-bottom: 0.2rem;">Doctor Filter:</label>
+            <select id="slot-filter-doctor" class="form-control">
+              <option value="ALL">All Doctors</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="slot-filter-date" style="font-size: 0.8rem; font-weight: 600; display: block; margin-bottom: 0.2rem;">Date Filter:</label>
+            <input type="date" id="slot-filter-date" class="form-control">
+          </div>
+
+          <div>
+            <label for="slot-filter-status" style="font-size: 0.8rem; font-weight: 600; display: block; margin-bottom: 0.2rem;">Status Filter:</label>
+            <select id="slot-filter-status" class="form-control">
+              <option value="ALL">All States</option>
+              <option value="AVAILABLE">Available</option>
+              <option value="PENDING">Pending Review</option>
+              <option value="BOOKED">Booked</option>
+              <option value="UNAVAILABLE">Unavailable / Past</option>
+            </select>
+          </div>
+
+          <div style="align-self: flex-end;">
+            <button type="button" id="btn-clear-slot-filters" class="btn btn-secondary btn-sm" style="height: 38px;">Clear Filters</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slots Grid / Table Container -->
+      <div id="slots-display-container">
+        <!-- Rendered by js/slots.js -->
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <div>&copy; 2026 MediQ Hospital Systems. All rights reserved.</div>
+        <div><a href="admin-dashboard.html">Return to Dashboard</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/storage.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/slots.js"></script>
+</body>
+</html>

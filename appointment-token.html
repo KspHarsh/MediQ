@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Appointment Token — MediQ</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/booking.css">
+</head>
+<body>
+
+  <!-- Navigation Header (Hidden in Print) -->
+  <header class="navbar no-print">
+    <div class="container">
+      <a href="user-dashboard.html" class="nav-brand" id="token-brand-link">
+        <img src="images/logo.png" alt="MediQ Official Logo">
+      </a>
+      <ul class="nav-links" id="token-nav-links">
+        <li><a href="user-dashboard.html">Dashboard</a></li>
+        <li><a href="book-appointment.html">Book Appointment</a></li>
+        <li><a href="my-appointments.html">My Appointments</a></li>
+        <li><a href="about.html">About &amp; Services</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="btn btn-secondary btn-sm btn-action-logout">Log Out</button>
+        <button class="nav-toggle" aria-label="Toggle Navigation">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <div class="container" style="max-width: 680px;">
+      <!-- Token Card (rendered by js/token.js) -->
+      <div id="appointment-token-card" class="token-card">
+        <div style="text-align: center; padding: 2rem;">
+          <p>Loading confirmation token...</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer no-print">
+    <div class="container">
+      <div class="footer-bottom">
+        <div>&copy; 2026 MediQ Hospital Systems. All rights reserved.</div>
+        <div><a href="user-dashboard.html">Back to Dashboard</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/storage.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/token.js"></script>
+</body>
+</html>

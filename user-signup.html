@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Patient Registration — MediQ</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/auth.css">
+</head>
+<body>
+
+  <!-- Navigation Header -->
+  <header class="navbar">
+    <div class="container">
+      <a href="index.html" class="nav-brand">
+        <img src="images/logo.png" alt="MediQ Official Logo">
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About & Services</a></li>
+        <li><a href="user-login.html" class="active">Patient Portal</a></li>
+        <li><a href="admin-login.html">Hospital Admin Portal</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="user-login.html" class="btn btn-secondary btn-sm">Patient Login</a>
+        <button class="nav-toggle" aria-label="Toggle Navigation">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <div class="auth-wrapper">
+      <div class="auth-card auth-card-wide">
+        <div class="auth-header">
+          <img src="images/logo.png" alt="MediQ Logo" class="auth-logo">
+          <span class="auth-role-badge role-patient">New Patient Registration</span>
+          <h1 class="auth-title">Create Patient Account</h1>
+          <p class="auth-subtitle">Register to book hospital appointment slots and receive confirmation tokens</p>
+        </div>
+
+        <form id="form-patient-signup">
+          <div class="form-group">
+            <label for="signup-fullname" class="form-label required">Full Name</label>
+            <input type="text" id="signup-fullname" class="form-control" placeholder="e.g. Jane Smith" required autocomplete="name">
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="signup-email" class="form-label required">Email Address</label>
+              <input type="email" id="signup-email" class="form-control" placeholder="name@example.com" required autocomplete="email">
+            </div>
+            <div class="form-group">
+              <label for="signup-phone" class="form-label required">Phone Number</label>
+              <input type="tel" id="signup-phone" class="form-control" placeholder="10-digit mobile number" required autocomplete="tel" maxlength="10" pattern="[0-9]{10}" inputmode="numeric">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="signup-age" class="form-label required">Age</label>
+              <input type="number" id="signup-age" class="form-control" min="1" max="130" placeholder="e.g. 29" required>
+            </div>
+            <div class="form-group">
+              <label for="signup-gender" class="form-label required">Gender</label>
+              <select id="signup-gender" class="form-control" required>
+                <option value="">-- Select Gender --</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="signup-password" class="form-label required">Password</label>
+              <div class="input-password-wrapper">
+                <input type="password" id="signup-password" class="form-control" placeholder="At least 6 characters" required autocomplete="new-password">
+                <button type="button" class="password-toggle-btn" data-target="signup-password">Show</button>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="signup-confirm-password" class="form-label required">Confirm Password</label>
+              <div class="input-password-wrapper">
+                <input type="password" id="signup-confirm-password" class="form-control" placeholder="Re-enter password" required autocomplete="new-password">
+                <button type="button" class="password-toggle-btn" data-target="signup-confirm-password">Show</button>
+              </div>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block btn-lg" style="margin-top: 1rem;">
+            Create Patient Account
+          </button>
+        </form>
+
+        <div class="auth-footer">
+          Already registered? <a href="user-login.html" class="auth-switch-link">Sign in to your account</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <div>&copy; 2026 MediQ Hospital Systems. All rights reserved.</div>
+        <div><a href="index.html">Back to Home</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/storage.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>
