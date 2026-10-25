@@ -38,13 +38,13 @@ The prototype pre-initializes demo accounts in `localStorage` for evaluation:
 - **Email:** `admin@mediq.com`
 - **Password:** `Admin@123`
 - *Access Portal:* [Hospital Admin Login](admin-login.html)
-- *(A "Quick Fill" button is also provided on the login page)*
+
 
 ### Patient
 - **Email:** `john.doe@example.com`
 - **Password:** `Patient@123`
 - *Access Portal:* [Patient Login](user-login.html)
-- *(A "Quick Fill" button is also provided on the login page)*
+
 
 ---
 
